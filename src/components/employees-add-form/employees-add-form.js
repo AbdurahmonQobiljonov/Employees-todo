@@ -14,14 +14,26 @@ class EmployeesAddForm extends Component{
       })
    }
 
+   onSubmit = (e) => {
+      e.preventDefault();
+      // Можно еще и сообщения добавлять, подсветку, атрибуты minlength и тд.
+      if (this.state.name.length < 3 || !this.state.salary) return;
+      this.props.onAdd(this.state.name, this.state.salary);
+      this.setState({
+         name: '',
+         salary: ''
+      })
+   }
+
   render() {
-      const {addItem}=this.props
       const {name,salary} = this.state
+
+
      return (
         <div className="app-add-form">
            <h3>Добавьте нового сотрудника</h3>
            <form className="add-form d-flex"
-                 onSubmit={(e)=>addItem(e,name,salary)}
+                 onSubmit={this.onSubmit}
            >
               <input type="text"
                      onChange={this.onChangeInput}
@@ -36,7 +48,7 @@ class EmployeesAddForm extends Component{
                      placeholder="З/П в $?"
               />
 
-              <button type="submit" className="btn btn-outline-light">
+              <button  type="submit" className="btn btn-outline-light">
                  Добавить
               </button>
            </form>

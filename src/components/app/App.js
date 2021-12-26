@@ -24,8 +24,7 @@ class App extends Component {
       this.setState(({data})=>({ data: data.filter((elem) => elem.id !== id) }))
    };
 
-   AddItemFromData=(e,name,salary)=>{
-       e.preventDefault()
+   AddItemFromData=(name,salary)=>{
       this.setState(({data})=>({data:[...data,{name,salary,increase: false,rise:false,id:this.maxRnd}]}))
    };
 
@@ -54,7 +53,7 @@ class App extends Component {
               onToggleProp={this.onToggleProp}
            />
            <EmployersAddForm
-              addItem={this.AddItemFromData}
+              onAdd={this.AddItemFromData}
            />
         </div>
      );
