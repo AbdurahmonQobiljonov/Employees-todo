@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import './employers-add-form.css';
+import './employees-add-form.css';
 
 class EmployeesAddForm extends Component{
 
@@ -15,11 +15,14 @@ class EmployeesAddForm extends Component{
    }
 
   render() {
+      const {addItem}=this.props
       const {name,salary} = this.state
      return (
         <div className="app-add-form">
            <h3>Добавьте нового сотрудника</h3>
-           <form className="add-form d-flex">
+           <form className="add-form d-flex"
+                 onSubmit={(e)=>addItem(e,name,salary)}
+           >
               <input type="text"
                      onChange={this.onChangeInput}
                      value={name} name='name'
